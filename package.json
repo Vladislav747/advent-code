@@ -4,7 +4,8 @@
   "description": "Конкурс Advent Code [https://adventofcode.com/2020]",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "ts-node",
+    "format": "prettier --write --ignore-unknown src"
   },
   "repository": {
     "type": "git",
