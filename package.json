@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "ts-node",
-    "format": "prettier --write --ignore-unknown src"
+    "format": "prettier --write --ignore-unknown src node_modules"
   },
   "repository": {
     "type": "git",
@@ -16,5 +16,12 @@
   "bugs": {
     "url": "https://github.com/Vladislav747/advent-code/issues"
   },
-  "homepage": "https://github.com/Vladislav747/advent-code#readme"
+  "homepage": "https://github.com/Vladislav747/advent-code#readme",
+  "devDependencies": {
+    "@tsconfig/node14": "^1.0.0",
+    "@types/node": "^14.14.12",
+    "prettier": "^2.2.1",
+    "ts-node": "^9.1.1",
+    "typescript": "^4.1.2"
+  }
 }
