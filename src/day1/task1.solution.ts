@@ -16,7 +16,10 @@ async function calc() {
     //Квадратичная сложность
     for (let i = 0; i < input.length; i++) {
       for (let j = i + 1; j < input.length; j++) {
-        
+        /* 
+          Найти из полученного массива чисел из файла txt
+          Те числа кот-е в сумме дают 2020 и перемножаем их
+        */
         if (input[i] + input[j] === YEAR) {
           return input[i] * input[j];
         }
