@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start": "ts-node",
-    "format": "prettier --write --ignore-unknown src node_modules"
+    "format": "prettier --write --ignore-unknown src node_modules",
+    "execute_day1-part1": "npm start -- src/day1/task1.solution.ts < src/day1/task1-data.txt"
+
   },
   "repository": {
     "type": "git",
