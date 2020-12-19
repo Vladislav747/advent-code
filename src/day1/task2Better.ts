@@ -3,6 +3,11 @@ import { readToString } from "../stdin";
 const YEAR = 2020;
 
 async function calc() {
+  /**
+   * Получить ввод данных
+   * Мы получаем данные по одному числу из файла txt
+   * Там они у нас расположены через /n элемент
+   */
   const input = await readToString().then(res => res
     .trim()
     .split("\n")
