@@ -1,4 +1,5 @@
 import { readToString } from "../stdin";
+const fs = require('fs');
 
 async function solvePart1() {
     const input = await readToString().then(res => res
@@ -10,7 +11,7 @@ async function solvePart1() {
 }
 
 /**
- * Найти количество препятствий на
+ * Найти количество препятствий на пути движения
  * @param map 
  * @param xSteps 
  * @param ySteps 
@@ -21,6 +22,7 @@ function calculateNumberOfTrees(map: string[], xSteps: number, ySteps: number) {
     let result = 0;
     let x = 0;
     let y = 0;
+    
     //Пока не выйдем за пределы карты
     while (y < map.length) {
         if (map[y][x] == '#')
@@ -32,7 +34,9 @@ function calculateNumberOfTrees(map: string[], xSteps: number, ySteps: number) {
         //Результат a % b – это остаток от целочисленного деления a на b
         x = (x + xSteps) % width;
     }
+    
     return result;
 }
 
+console.log("Странно решение полностью правильно но не проходит...")
 solvePart1().then(console.log);

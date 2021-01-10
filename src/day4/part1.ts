@@ -1,14 +1,11 @@
 import { readToString } from "../stdin";
 
-/**
- * Во второй части задания нужно просто перемножить
- */
-async function solvePart2() {
+async function solvePart1() {
     const input = await readToString().then(res => res
         .trim()
         .split("\n"));
     //3 шага вперед 1 вниз
-    const result = calculateNumberOfTrees(input, 1, 1) * calculateNumberOfTrees(input, 3, 1) * calculateNumberOfTrees(input, 5, 1) * calculateNumberOfTrees(input, 7, 1) * calculateNumberOfTrees(input, 1, 2);
+    const result = calculateNumberOfTrees(input, 3, 1);
     return result;
 }
 

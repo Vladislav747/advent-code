@@ -2,7 +2,7 @@
 
 Конкурс Advent Code [https://adventofcode.com/2020]
 
-Task 3
+Task 4
 
 Для запуска в Windows используйте команду
 
