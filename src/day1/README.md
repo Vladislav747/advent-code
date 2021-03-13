@@ -2,7 +2,7 @@
 
 Конкурс Advent Code [https://adventofcode.com/2020]
 
-Task 1 https://adventofcode.com/2020/day/1
+Task 1 [https://adventofcode.com/2020/day/1]
 
 --- Part One ---
 
