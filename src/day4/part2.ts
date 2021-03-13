@@ -27,7 +27,21 @@ function hasAllFields(passport) {
     return Object.keys(passport).length === importantFieldNames.size;
 }
 
+/**
+ * Цвет валиден
+ * @param color 
+ */
+function isValidHairColor(color: string) {
+    const hairColorRegex = /^\[a-z0-9]{6}$/;
+    return hairColorRegex.test(color);
 
+}
+
+/**
+ * Высота валидна?
+ * 
+ * @param height 
+ */
 function isValidHeight(height: string) {
     const heightRegex = /^\d+(cm|in)$/;
     if (!heightRegex.test(height)) {
@@ -44,6 +58,18 @@ function isValidHeight(height: string) {
 
 
 }
+
+function isValidEyeColor(color) {
+    const eyeColors = new Set(["amb", "blu", "brn", "gry", "grn", "hzl", "oth"])
+    return eyeColors.has(color);
+}
+
+function isValidPid(pid) {
+    const pidRegex = /^\d{9}$/;
+    return pidRegex.test(pid);
+}
+
+
 
 /**
  * Проверить на валидность каждое отдельное поле
@@ -66,11 +92,11 @@ function isValidField(name: string, value: string) {
 
         //hgt(Height) - a number followed
         //If cm, the number be at least 150 and most 193
-        //If in, the number be at least 150 and most 193
+        //If in the number be at least 59 and most 76
         case "hgt":
             return isValidHeight(value);
 
-        //hcl(Hair color) 
+        //hcl(Hair color) - a # followed by exactly six characters 0-9 or a-f 
         case "hcl":
             return isValidHairColor(value);
         //ecl(Eye color) 
@@ -79,9 +105,10 @@ function isValidField(name: string, value: string) {
 
         //pid
         case "pid":
+            return isValidPid(value);
 
         default:
-            break;
+            return false;
     }
 }
 
