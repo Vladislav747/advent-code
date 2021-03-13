@@ -1,17 +1,25 @@
-import { getPassports, importantFieldNames } from "./parser";
-
-function isValidPassport(passport) {
-    //Если количество ключей совпадает с количеством ключей в необходимых полях
-    console.log(Object.keys(passport).length >= importantFieldNames.size);
-    return Object.keys(passport).length >= importantFieldNames.size;
-}
-
+import { readToString } from "../stdin";
 
 async function main() {
-    const passports = await getPassports();
+    const input = await readToString();
+    const tickets = input.split("\n");
 
-    const validCount = passports.filter(isValidPassport).length;
-    console.log(validCount);
+    let max = 0;
+
+    for (const ticket of tickets) {
+        const rowString = ticket.slice(0, 7);
+
+        const columnStr = ticket.slice(-3); // 3 последних символа 
+        const row = parseInt(rowString.replace(/F/g, '0').replace(/B/g, '1'), 2);
+        const col = parseInt(columnStr.replace(/L/g, '0').replace(/R/g, '1'), 2);
+
+        const seatId = row * 8 + col;
+        max = seatId > max ? seatId : max;
+        console.log(col);
+    }
+
+    console.log(max);
+
 }
 
 
