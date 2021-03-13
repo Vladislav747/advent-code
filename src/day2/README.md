@@ -2,6 +2,15 @@
 
 Конкурс Advent Code [https://adventofcode.com/2020]
 
+### Для первой части
+
+npm start -- src/day2/part1.ts < src/day2/task2-data.txt
+
+### Для второй части
+
+npm start -- src/day2/part2.ts < src/day2/task2-data.txt
+
+
 Task 2
 
 --- Part One ---

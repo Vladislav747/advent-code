@@ -8,8 +8,8 @@ Task 4
 
 ### Для первой части
 
-npm start -- src/day3/part1.ts < src/day3/task3-data.txt
+npm start -- src/day4/part1.ts < src/day4/task4-data.txt
 
 ### Для второй части
 
-npm start -- src/day3/part2.ts < src/day3/task3-data.txt
+npm start -- src/day4/part2.ts < src/day4/task4-data.txt
