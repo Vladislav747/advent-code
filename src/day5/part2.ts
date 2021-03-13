@@ -32,7 +32,7 @@ function hasAllFields(passport) {
  * @param color 
  */
 function isValidHairColor(color: string) {
-    const hairColorRegex = /^\[a-f0-9]{6}$/;
+    const hairColorRegex = /^\[a-z0-9]{6}$/;
     return hairColorRegex.test(color);
 
 }
@@ -76,7 +76,7 @@ function isValidPid(pid) {
  * @param name 
  * @param value 
  */
-function isValidField(name: any, value: any) {
+function isValidField(name: string, value: string) {
     switch (name) {
         //byr(Birth year) - four digits; at least between 1920 and 2002
         case "byr":
@@ -134,8 +134,4 @@ async function main() {
     const passports = await getPassports();
     const validCount = passports.filter(isValidPassport).length;
 
-    console.log(validCount);
-
 }
-
-main();

@@ -1,11 +1,7 @@
 import { readToString } from "../stdin";
 export const importantFieldNames = new Set([
-  "byr", "iyr", "eyr", "hgt", "hcl", "ecl", "pid"
+  "byr", "iyr", "hgt", "hcl", "ecl", "pid", "cid"
 ]);
-
-export const importantFieldNamesArr = [
-  "byr", "iyr", "eyr", "hgt", "hcl", "ecl", "pid"
-];
 
 
 /**
