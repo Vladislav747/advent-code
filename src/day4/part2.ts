@@ -1,41 +1,110 @@
-import { readToString } from "../stdin";
+import { getPassports, importantFieldNames } from "./parser";
 
 /**
- * Во второй части задания нужно просто перемножить
+ * Проверка что год валиден(4 цифры)
+ * @param year 
  */
-async function solvePart2() {
-    const input = await readToString().then(res => res
-        .trim()
-        .split("\n"));
-    //3 шага вперед 1 вниз
-    const result = calculateNumberOfTrees(input, 1, 1) * calculateNumberOfTrees(input, 3, 1) * calculateNumberOfTrees(input, 5, 1) * calculateNumberOfTrees(input, 7, 1) * calculateNumberOfTrees(input, 1, 2);
-    return result;
+function isYear(year) {
+    const yearRegex = /^\d{4}$/;
+    return yearRegex.test(year);
 }
 
 /**
- * Найти количество препятствий на
- * @param map 
- * @param xSteps 
- * @param ySteps 
+ * Проверка что год входит в определенные интервал
+ * @param number - год для проверки 
+ *  @param min - нижняя граница год
+ *  @param max - верхняя граница год
  */
-function calculateNumberOfTrees(map: string[], xSteps: number, ySteps: number) {
-    //Длина это длина строки где есть препятствие - 32 клетки
-    const width = map[0].length;
-    let result = 0;
-    let x = 0;
-    let y = 0;
-    //Пока не выйдем за пределы карты
-    while (y < map.length) {
-        if (map[y][x] == '#')
-            result++;
-        //Увеличиваем шаг на количество y шагов которые мы можем делать
-        y += ySteps;
-        //Ограничение длинной поля - так как поле может быть бесконечно по x
-        //32 (width) в данном случае по модулю ограничивает что число в Х всегда будет меньше 32
-        //Результат a % b – это остаток от целочисленного деления a на b
-        x = (x + xSteps) % width;
+function isInRange(number: number, min: number, max: number) {
+    return number >= min && number <= max;
+}
+
+/**
+ * Если количество ключей совпадает с количеством ключей в необходимых полях
+ * @param passport 
+ */
+function hasAllFields(passport) {
+    return Object.keys(passport).length === importantFieldNames.size;
+}
+
+
+function isValidHeight(height: string) {
+    const heightRegex = /^\d+(cm|in)$/;
+    if (!heightRegex.test(height)) {
+        return false;
     }
-    return result;
+    if (height.endsWith("cm")) {
+        const value = parseInt(height, 10);
+        return isInRange(value, 150, 193);
+    }
+    if (height.endsWith("in")) {
+        const value = parseInt(height, 10);
+        return isInRange(value, 59, 76);
+    }
+
+
 }
 
-solvePart1().then(console.log);
+/**
+ * Проверить на валидность каждое отдельное поле
+ * @param name 
+ * @param value 
+ */
+function isValidField(name: string, value: string) {
+    switch (name) {
+        //byr(Birth year) - four digits; at least between 1920 and 2002
+        case "byr":
+            return isYear(value) && isInRange(parseInt(value, 10), 1920, 2002);
+
+        //iyr(Issue year) - four digits; at least between 2010 and 2020
+        case "iyr":
+            return isYear(value) && isInRange(parseInt(value, 10), 2010, 2020);
+
+        //eyr(Expiration year) - four digits; at least between 2020 and 2030
+        case "eyr":
+            return isYear(value) && isInRange(parseInt(value, 10), 2020, 2030);
+
+        //hgt(Height) - a number followed
+        //If cm, the number be at least 150 and most 193
+        //If in, the number be at least 150 and most 193
+        case "hgt":
+            return isValidHeight(value);
+
+        //hcl(Hair color) 
+        case "hcl":
+            return isValidHairColor(value);
+        //ecl(Eye color) 
+        case "ecl":
+            return isValidEyeColor(value);
+
+        //pid
+        case "pid":
+
+        default:
+            break;
+    }
+}
+
+
+
+function allFieldsAreValid(passport) {
+    for (const [name, value] of Object.entries(passport)) {
+        if (!isValidField(name, value)) {
+            return false;
+        }
+
+    }
+    return true;
+}
+
+
+
+function isValidPassport(passport) {
+    return hasAllFields(passport) && allFieldsAreValid(passport);
+}
+
+async function main() {
+    const passports = await getPassports();
+    const validCount = passports.filter(isValidPassport).length;
+
+}
