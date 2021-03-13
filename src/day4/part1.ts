@@ -3,7 +3,7 @@ import { readToString } from "../stdin";
 async function solvePart1() {
     const input = await readToString().then(res => res
         .trim()
-        .split("\n"));
+        .split("\u2028"));
     //3 шага вперед 1 вниз
     const result = calculateNumberOfTrees(input, 3, 1);
     return result;
