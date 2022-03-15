@@ -1,5 +1,9 @@
 import { readToString } from "../stdin";
 
+/**
+ * Теперь наша задача починить программу
+ * 
+ */
 interface State {
     accumulator: number;
     current: number;
@@ -14,10 +18,13 @@ const commands: Record <Instruction, Command> = {
     "acc": (state, arg) => ({accumulator: state.accumulator + arg, current: state.current + 1})
 }
 
+/**
+ * Обрати внимание что для команды jmp мы пытаемся применить команду nop и наоборот
+ */
 const tryFixCommands: Record<Instruction, Command> = {
    "acc": commands["acc"],
-   "jmp": commands["jmp"],
-   "nop": commands["nop"],
+   "jmp": commands["nop"],
+   "nop": commands["jmp"],
 }
 
 function parse(line: string): [Instruction, number] {
@@ -67,7 +74,9 @@ async function run() {
         const [instruction, arg] = parse(lines[state.current]);
         let nextState = tryFixCommands[instruction](state, arg);
 
+        //Пытаемся закончить программу
         if (instruction === "jmp" || instruction === "nop") {
+            //Флаг завершения и финальное состояние
             const [finished, finshedState] = tryFinish(lines, nextState, executed);
 
             if (finished) {
