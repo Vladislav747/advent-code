@@ -2,15 +2,15 @@
 
 Конкурс Advent Code [https://adventofcode.com/2020]
 
-Task 7 [https://adventofcode.com/2020/day/7]
+Task 8 [https://adventofcode.com/2020/day/8]
 
 ### Для первой части
 
-npm start -- src/day7/part1.ts < src/day7/task7-data.txt
+npm start -- src/day8/part1.ts < src/day8/task8-data.txt
 
 ### Для второй части
 
-npm start -- src/day7/part2.ts < src/day7/task7-data.txt
+npm start -- src/day8/part2.ts < src/day7/task7-data.txt
 
 You land at the regional airport in time for your next flight. In fact, it looks like you'll even have time to grab some food: all flights are currently delayed due to issues in luggage processing.
 

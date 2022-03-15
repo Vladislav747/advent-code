@@ -5,6 +5,13 @@ async function solvePart2() {
 
     let sum = 0;
     for (const group of input) {
+        /*Разделяем строки split
+        abc
+        def
+        ghi
+
+        на элементы массивов
+        */
         const answers = group.split('\n');
         const firstLetters = answers[0].split('');
 
