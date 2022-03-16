@@ -1,3 +1,8 @@
+/**
+ * Так как необходимо получить только цвета родителей и детей сумок то мы парсим строку
+ * @param line 
+ * @returns 
+ */
 export function parsePart1(line: string) {
     const [parent, ...children] = line
         .replace(/ bags?|\.|\d+ /g, "")
